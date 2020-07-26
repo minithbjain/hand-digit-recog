@@ -18,6 +18,10 @@ Handwritten Digit Recognition using OpenCV & CNN | [Demo](https://hand-digit-rec
 git clone https://github.com/minithbjain/hand-digit-recog.git
 cd hand-digit-recog
 ```
+* Install dependencies
+```python
+pip install -r requirements.txt
+```
 * Run App
 ```python
 python app.py
