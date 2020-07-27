@@ -9,7 +9,7 @@ Handwritten Digit Recognition using OpenCV & CNN | [Demo](https://hand-digit-rec
 5. `tensorflow-cpu`
 6. `keras`
 7. `gunicorn`
-8. `pillow==6.2.0`
+8. `pillow==6.2.2`
 
 ## Local Usage 
 
