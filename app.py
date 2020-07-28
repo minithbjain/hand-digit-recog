@@ -6,7 +6,6 @@ from flask import Flask, request, jsonify, render_template
 from keras.models import load_model
 from PIL import Image
 from io import BytesIO
-from random import randrange
 
 def getDigits(contours, hierarchy):
     # Get the first index from hierarchy list [[contour 1,contour2,....]]
@@ -28,7 +27,7 @@ def getDigits(contours, hierarchy):
         # Get the origin, width & height of the rectangle
         x,y,w,h = r
         # Some rules to filter the rectangles based on area, width, height and the heirarchy level
-        if ((w*h)>250) and (10 <= w <= 200) and (10 <= h <= 200) and hr[3] == most_common_heirarchy:
+        if ((w*h)>250) and (10 <= w <= 220) and (10 <= h <= 200) and hr[3] == most_common_heirarchy:
             # Append rectangle to the list
             final_bounding_rectangles.append(r)
     # Return rectangle list
@@ -43,7 +42,7 @@ def processIuput(image):
     # Define kernel
     kernel = np.ones((5,5),np.uint8)
     # Apply threshold
-    ret,thresh = cv2.threshold(imgray,127,255,0)
+    ret,thresh = cv2.threshold(imgray,170,255,0)
     # Apply erosion
     thresh = cv2.erode(thresh,kernel,iterations = 1)
     # Apply dilation
@@ -95,7 +94,7 @@ def predict():
         # Prediction
         out_image = processInput(img)
         # Generate file name
-        fname = "static/"+str(randrange(99999))+".png"
+        fname = "static/"+str(np.random.randint(9999,size=1)[0])+".png"
         # Write image
         cv2.imwrite(fname,out_image)
         # Return file name
